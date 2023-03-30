@@ -30,27 +30,27 @@ public class Program
         GetAllCountry();
         Console.WriteLine();
 
-        //GetByIdCountry("AR");
-        //Console.WriteLine();
+        GetByIdCountry("AR");
+        Console.WriteLine();
 
-        //InsertCountry("RU", "Rusia", 1);
-        //Console.WriteLine();
-        //GetByIdCountry("RU");
-        //Console.WriteLine();
+        InsertCountry("RU", "Rusia", 1);
+        Console.WriteLine();
+        GetByIdCountry("RU");
+        Console.WriteLine();
 
-        //UpdateCountry("RU", "Uni Soviet");
-        //Console.WriteLine();
-        //GetByIdCountry("RU");
-        //Console.WriteLine();
+        UpdateCountry("RU", "Uni Soviet");
+        Console.WriteLine();
+        GetByIdCountry("RU");
+        Console.WriteLine();
 
-        //UpdateCountry("RU", 3);
-        //Console.WriteLine();
-        //GetByIdCountry("RU");
-        //Console.WriteLine();
+        UpdateCountry("RU", 3);
+        Console.WriteLine();
+        GetByIdCountry("RU");
+        Console.WriteLine();
 
-        //DeleteCountry("RU");
-        //GetByIdCountry("RU");
-        //Console.WriteLine();
+        DeleteCountry("RU");
+        GetByIdCountry("RU");
+        Console.WriteLine();
     }
 
     //GET ALL : Region
@@ -264,8 +264,6 @@ public class Program
 
 
 
-
-
     // GET ALL : Country
     public static void GetAllCountry()
     {
@@ -277,6 +275,7 @@ public class Program
         command.Connection = connection;
         command.CommandText = "Select * From countries;";
 
+        //Read data in Countries table
         connection.Open();
         using SqlDataReader reader = command.ExecuteReader();
         if (reader.HasRows)
@@ -314,6 +313,7 @@ public class Program
         pID.Value = id;
         command.Parameters.Add(pID);
 
+        //Read data Countries table by Id
         connection.Open();
         using SqlDataReader reader = command.ExecuteReader();
         if (reader.HasRows)
@@ -336,36 +336,49 @@ public class Program
     // INSERT : Country
     public static void InsertCountry(string id, string name, int region)
     {
+        //Create instance SQL Server Connection
         connection = new SqlConnection(connectionString);
         connection.Open();
 
+        //Transact-SQL Transasction made in SQL Server database
         SqlTransaction transaction = connection.BeginTransaction();
 
         try
         {
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = "Insert Into countries (id, name, region) Values (@id, @name, @region)";
-            command.Transaction = transaction;
+            //Transact-SQL statement insert data Countries table
+            SqlCommand command = new SqlCommand
+            {
+                Connection = connection,
+                CommandText = "Insert Into countries (id, name, region) Values (@id, @name, @region)",
+                Transaction = transaction
+            };
 
-            SqlParameter pId = new SqlParameter();
-            pId.ParameterName = "@id";
-            pId.SqlDbType = SqlDbType.VarChar;
-            pId.Value = id;
+            //Parameters Id, Name, & Region
+            SqlParameter pId = new SqlParameter
+            {
+                ParameterName = "@id",
+                SqlDbType = SqlDbType.VarChar,
+                Value = id
+            };
             command.Parameters.Add(pId);
 
-            SqlParameter pName = new SqlParameter();
-            pName.ParameterName = "@name";
-            pName.SqlDbType = SqlDbType.VarChar;
-            pName.Value = name;
+            SqlParameter pName = new SqlParameter
+            {
+                ParameterName = "@name",
+                SqlDbType = SqlDbType.VarChar,
+                Value = name
+            };
             command.Parameters.Add(pName);
 
-            SqlParameter pRegion = new SqlParameter();
-            pRegion.ParameterName = "@region";
-            pRegion.SqlDbType = SqlDbType.Int;
-            pRegion.Value = region;
+            SqlParameter pRegion = new SqlParameter
+            {
+                ParameterName = "@region",
+                SqlDbType = SqlDbType.Int,
+                Value = region
+            };
             command.Parameters.Add(pRegion);
 
+            //Execute Transact-SQL statement
             command.ExecuteNonQuery();
 
             transaction.Commit();
@@ -389,30 +402,41 @@ public class Program
     // UPDATE : CountryName
     public static void UpdateCountry(string id, string name)
     {
+        //Create instance SQL Server Connection
         connection = new SqlConnection(connectionString);
         connection.Open();
 
+        //Transact-SQL Transasction made in SQL Server database
         SqlTransaction transaction = connection.BeginTransaction();
 
         try
         {
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = "Update countries Set name = @name Where id = @id;";
-            command.Transaction = transaction;
+            //Transact-SQL statement update data nama in Countries table
+            SqlCommand command = new SqlCommand
+            {
+                Connection = connection,
+                CommandText = "Update countries Set name = @name Where id = @id;",
+                Transaction = transaction
+            };
 
-            SqlParameter pName = new SqlParameter();
-            pName.ParameterName = "@name";
-            pName.SqlDbType = SqlDbType.VarChar;
-            pName.Value = name;
+            //Parameters Id & Name
+            SqlParameter pName = new SqlParameter
+            {
+                ParameterName = "@name",
+                SqlDbType = SqlDbType.VarChar,
+                Value = name
+            };
             command.Parameters.Add(pName);
 
-            SqlParameter pId = new SqlParameter();
-            pId.ParameterName = "@id";
-            pId.SqlDbType = SqlDbType.VarChar;
-            pId.Value = id;
+            SqlParameter pId = new SqlParameter
+            {
+                ParameterName = "@id",
+                SqlDbType = SqlDbType.VarChar,
+                Value = id
+            };
             command.Parameters.Add(pId);
 
+            //Execute Transact-SQL statement
             int result = command.ExecuteNonQuery();
             if (result > 0)
             {
@@ -444,30 +468,41 @@ public class Program
     // UPDATE : CountryRegion
     public static void UpdateCountry(string id, int region)
     {
+        //Create instance SQL Server Connection
         connection = new SqlConnection(connectionString);
         connection.Open();
 
+        //Transact-SQL Transasction made in SQL Server database
         SqlTransaction transaction = connection.BeginTransaction();
 
         try
         {
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = "Update countries Set region = @region Where id = @id;";
-            command.Transaction = transaction;
+            //Transact-SQL statement update data region in Countries table
+            SqlCommand command = new SqlCommand
+            {
+                Connection = connection,
+                CommandText = "Update countries Set region = @region Where id = @id;",
+                Transaction = transaction
+            };
 
-            SqlParameter pRegion = new SqlParameter();
-            pRegion.ParameterName = "@region";
-            pRegion.SqlDbType = SqlDbType.Int;
-            pRegion.Value = region;
+            //Parameters Id & Region
+            SqlParameter pRegion = new SqlParameter
+            {
+                ParameterName = "@region",
+                SqlDbType = SqlDbType.Int,
+                Value = region
+            };
             command.Parameters.Add(pRegion);
 
-            SqlParameter pId = new SqlParameter();
-            pId.ParameterName = "@id";
-            pId.SqlDbType = SqlDbType.VarChar;
-            pId.Value = id;
+            SqlParameter pId = new SqlParameter
+            {
+                ParameterName = "@id",
+                SqlDbType = SqlDbType.VarChar,
+                Value = id
+            };
             command.Parameters.Add(pId);
 
+            //Execute Transact-SQL statement
             int result = command.ExecuteNonQuery();
             if (result > 0)
             {
@@ -499,24 +534,33 @@ public class Program
     // DELETE : Country
     public static void DeleteCountry(string id)
     {
+        //Create instance SQL Server Connection
         connection = new SqlConnection(connectionString);
         connection.Open();
 
+        //Transact-SQL Transasction made in SQL Server database
         SqlTransaction transaction = connection.BeginTransaction();
 
         try
         {
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = "Delete From countries Where id = @id;";
-            command.Transaction = transaction;
+            //Transact-SQL statement delete data Countries table
+            SqlCommand command = new SqlCommand
+            {
+                Connection = connection,
+                CommandText = "Delete From countries Where id = @id;",
+                Transaction = transaction
+            };
 
-            SqlParameter pId = new SqlParameter();
-            pId.ParameterName = "@id";
-            pId.SqlDbType = SqlDbType.VarChar;
-            pId.Value = id;
+            //Parameters Id
+            SqlParameter pId = new SqlParameter
+            {
+                ParameterName = "@id",
+                SqlDbType = SqlDbType.VarChar,
+                Value = id
+            };
             command.Parameters.Add(pId);
 
+            //Execute Transact-SQL statement
             int result = command.ExecuteNonQuery();
             if (result > 0)
             {
