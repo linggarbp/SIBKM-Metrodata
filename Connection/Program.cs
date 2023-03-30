@@ -411,7 +411,7 @@ public class Program
 
         try
         {
-            //Transact-SQL statement update data nama in Countries table
+            //Transact-SQL statement update data name in Countries table
             SqlCommand command = new SqlCommand
             {
                 Connection = connection,
