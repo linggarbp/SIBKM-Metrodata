@@ -62,7 +62,7 @@ public class Program
             Console.WriteLine("5. Delete");
             Console.WriteLine("6. Exit");
             Console.Write("Input: ");
-            var input = Convert.ToInt16(Console.ReadLine());
+            var input = Convert.ToInt32(Console.ReadLine());
             switch (input)
             {
                 case 1:
@@ -73,7 +73,7 @@ public class Program
                 case 2:
                     Console.Clear();
                     Console.Write("Input Id: ");
-                    var id = Convert.ToInt16(Console.ReadLine());
+                    var id = Convert.ToInt32(Console.ReadLine());
                     regionController.GetById(id);
                     Console.ReadKey();
                     break;
@@ -92,7 +92,7 @@ public class Program
                     Console.Clear();
                     Console.WriteLine("=======Update Region========");
                     Console.Write("Input Id: ");
-                    var idUpdate = Convert.ToInt16(Console.ReadLine());
+                    var idUpdate = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Input Name: ");
                     var nameUpdate = Console.ReadLine();
                     regionController.Update(new Region
@@ -106,7 +106,7 @@ public class Program
                     Console.Clear();
                     Console.WriteLine("=======Delete Region========");
                     Console.Write("Input Id: ");
-                    var idDelete = Convert.ToInt16(Console.ReadLine());
+                    var idDelete = Convert.ToInt32(Console.ReadLine());
                     regionController.Delete(idDelete);
                     Console.ReadKey();
                     break;

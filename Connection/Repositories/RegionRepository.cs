@@ -119,7 +119,7 @@ public class RegionRepository : IRegionRepository
             };
             command.Parameters.Add(pName);
 
-            command.ExecuteNonQuery();
+            result = command.ExecuteNonQuery();
 
             transaction.Commit();
             connection.Close();
@@ -172,7 +172,7 @@ public class RegionRepository : IRegionRepository
             };
             command.Parameters.Add(pName);
 
-            command.ExecuteNonQuery();
+            result = command.ExecuteNonQuery();
 
             transaction.Commit();
             connection.Close();
@@ -217,7 +217,7 @@ public class RegionRepository : IRegionRepository
             };
             command.Parameters.Add(pId);
 
-            command.ExecuteNonQuery();
+            result = command.ExecuteNonQuery();
 
             transaction.Commit();
             connection.Close();

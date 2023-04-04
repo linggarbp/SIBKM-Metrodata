@@ -135,7 +135,7 @@ public class CountryRepository : ICountryRepository
             };
             command.Parameters.Add(pRegion);
 
-            command.ExecuteNonQuery();
+            result = command.ExecuteNonQuery();
 
             transaction.Commit();
             connection.Close();
@@ -196,7 +196,7 @@ public class CountryRepository : ICountryRepository
             };
             command.Parameters.Add(pRegion);
 
-            command.ExecuteNonQuery();
+            result = command.ExecuteNonQuery();
 
             transaction.Commit();
             connection.Close();
@@ -241,7 +241,7 @@ public class CountryRepository : ICountryRepository
             };
             command.Parameters.Add(pId);
 
-            command.ExecuteNonQuery();
+            result = command.ExecuteNonQuery();
 
             transaction.Commit();
             connection.Close();
