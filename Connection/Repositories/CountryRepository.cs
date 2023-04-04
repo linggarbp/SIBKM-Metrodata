@@ -168,7 +168,7 @@ public class CountryRepository : ICountryRepository
             SqlCommand command = new SqlCommand
             {
                 Connection = connection,
-                CommandText = "Update countries Set (name, region) = (@name, @region) Where id = @id;",
+                CommandText = "Update countries Set name = @name, region = @region Where id = @id;",
                 Transaction = transaction
             };
 

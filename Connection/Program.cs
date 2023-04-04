@@ -137,7 +137,7 @@ public class Program
             Console.WriteLine("5. Delete");
             Console.WriteLine("6. Exit");
             Console.Write("Input: ");
-            var input = Convert.ToInt16(Console.ReadLine());
+            var input = Convert.ToInt32(Console.ReadLine());
             switch (input)
             {
                 case 1:
@@ -160,7 +160,7 @@ public class Program
                     Console.Write("Input Name: ");
                     var nameInsert = Console.ReadLine();
                     Console.Write("Input Region: ");
-                    var regionInsert = Convert.ToInt16(Console.ReadLine());
+                    var regionInsert = Convert.ToInt32(Console.ReadLine());
                     countryController.Insert(new Country
                     {
                         Id = idInsert,
@@ -177,7 +177,7 @@ public class Program
                     Console.Write("Input Name: ");
                     var nameUpdate = Console.ReadLine();
                     Console.Write("Input Region: ");
-                    var regionUpdate = Convert.ToInt16(Console.ReadLine());
+                    var regionUpdate = Convert.ToInt32(Console.ReadLine());
                     countryController.Update(new Country
                     {
                         Id = idUpdate,
