@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Connection.Controllers;
-
 public class RegionController
 {
     private readonly IRegionRepository _regionRepository;

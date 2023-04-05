@@ -9,9 +9,7 @@ using System.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 using static System.Net.Mime.MediaTypeNames;
 
-
 namespace Connection;
-
 public class Program
 {
     public static void Main()
